@@ -149,7 +149,7 @@
     const fromCurrencyInput = document.getElementById('from-currency');
     const toCurrencyInput = document.getElementById('to-currency');
     let data = {};
-    fetch(process.env.CURRENCY_API_KEY)
+    fetch('https://api.exchangerate-api.com/v4/latest/INR')
       .then(response => response.json())
       .then(res => {
         data = res;

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Temperature Converter is a simple JavaScript project that converts temperatures between Celsius, Fahrenheit, and Kelvin.">
+  <meta name="keywords" content="temperature, converter, celsius, fahrenheit, kelvin">
+  <meta name="author" content="Divyakumar Patel">
+  <title>Temperature Converter</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      width: 100%;
+      height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: linear-gradient(to right, rgb(86 0 255), rgb(255, 0, 0));
+    }
+
+    .container {
+      max-width: 400px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      background-image: linear-gradient(to right, rgb(86 0 255), rgb(255, 0, 0));
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    input::-webkit-inner-spin-button {
+      display: none;
+    }
+
+    input::placeholder {
+      font-weight: normal;
+    }
+
+    @media screen and (max-width: 420px) {
+      body {
+        background-repeat: no-repeat;
+      }
+
+      .container {
+        margin: 15px;
+        padding: 10px;
+      }
+
+      input[type="number"] {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Temperature Converter</h1>
+    <div class="input-container">
+      <label for="celsius">Celsius:</label>
+      <input type="number" id="celsius" placeholder="Enter Celsius" value="0">
+    </div>
+    <div class="input-container">
+      <label for="fahrenheit">Fahrenheit:</label>
+      <input type="number" id="fahrenheit" placeholder="Enter Fahrenheit" value="32">
+    </div>
+    <div class="input-container">
+      <label for="kelvin">Kelvin:</label>
+      <input type="number" id="kelvin" placeholder="Enter Kelvin" value="273.15">
+    </div>
+  </div>
+
+  <script>
+    const celsiusInput = document.getElementById('celsius');
+    const fahrenheitInput = document.getElementById('fahrenheit');
+    const kelvinInput = document.getElementById('kelvin');
+
+    celsiusInput.addEventListener('input', function () {
+      const celsius = parseFloat(celsiusInput.value);
+      const fahrenheit = (celsius * 9 / 5) + 32;
+      const kelvin = celsius + 273.15;
+      fahrenheitInput.value = fahrenheit.toFixed(2);
+      kelvinInput.value = kelvin.toFixed(2);
+    });
+
+    fahrenheitInput.addEventListener('input', function () {
+      const fahrenheit = parseFloat(fahrenheitInput.value);
+      const celsius = (fahrenheit - 32) * 5 / 9;
+      const kelvin = (fahrenheit + 459.67) * 5 / 9;
+      celsiusInput.value = celsius.toFixed(2);
+      kelvinInput.value = kelvin.toFixed(2);
+    });
+
+    kelvinInput.addEventListener('input', function () {
+      const kelvin = parseFloat(kelvinInput.value);
+      const celsius = kelvin - 273.15;
+      const fahrenheit = (kelvin * 9 / 5) - 459.67;
+      celsiusInput.value = celsius.toFixed(2);
+      fahrenheitInput.value = fahrenheit.toFixed(2);
+    });
+
+  </script>
+</body>
+
+</html>

@@ -148,10 +148,13 @@
     const toNameInput = document.getElementById('to-name');
     const fromCurrencyInput = document.getElementById('from-currency');
     const toCurrencyInput = document.getElementById('to-currency');
-    let data = {};
-    fetch('https://api.exchangerate-api.com/v4/latest/INR')
-      .then(response => response.json())
-      .then(res => {
+
+    var data = {};
+    
+    async function fetchRate() {
+      try {
+        let res = await fetch('https://api.exchangerate-api.com/v4/latest/INR');
+        res = await res.json();
         data = res;
         const currencies = Object.keys(data.rates);
         fromCurrencyInput.innerHTML = currencies
@@ -161,7 +164,12 @@
           .map(currency => `<option value="${currency}" ${currency === 'USD' ? 'selected' : ''}>${currency}</option>`)
           .join('');
         changeValues();
-      });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchRate();
 
     fromNameInput.addEventListener('input', changeValues);
     fromCurrencyInput.addEventListener('change', changeValues);
